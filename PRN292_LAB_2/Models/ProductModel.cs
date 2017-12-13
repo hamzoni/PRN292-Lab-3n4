@@ -29,14 +29,15 @@ namespace PRN292_LAB_2.Models
 
         public Product convertRow(DataRow r)
         {
+            
             Product p = new Product();
 
-            if (r["ProductID"] != null) p.id = Convert.ToInt32(r["ProductID"]);
-            if (r["ProductName"] != null) p.name = (string)r["ProductName"];
-            if (r["UnitPrice"] != null) p.price = Convert.ToDouble(r["UnitPrice"]);
+            if (!r.IsNull("ProductID")) p.id = Convert.ToInt32(r["ProductID"]);
+            if (!r.IsNull("ProductName")) p.name = (string)r["ProductName"];
+            if (!r.IsNull("UnitPrice")) p.price = Double.Parse(r["UnitPrice"].ToString());
 
-            if (r["CategoryID"] != null) p.category = DataModel.ctg.searchByID(r["CategoryID"]);
-            if (r["Discontinued"] != null) p.discontinue = Convert.ToBoolean(r["Discontinued"]);
+            if (!r.IsNull("CategoryID")) p.category = DataModel.ctg.searchByID(r["CategoryID"]);
+            if (!r.IsNull("Discontinued")) p.discontinue = Convert.ToBoolean(r["Discontinued"]);
 
             return p;
         }

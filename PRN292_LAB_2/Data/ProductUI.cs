@@ -23,6 +23,7 @@ namespace PRN292_LAB_2.Data
             dt.Columns.AddRange(cols);
             foreach (Product p in prds)
             {
+                if (p == null) continue;
                 dt.Rows.Add(p.id, p.name, p.price, p.category.name);
             }
 
