@@ -19,8 +19,8 @@
                 <asp:BoundField DataField="Price" HeaderText="Price" />
                 <asp:BoundField DataField="Category" HeaderText="Category" />
                 <asp:BoundField DataField="Quantity" HeaderText="Quantity" />
-                <asp:ButtonField ButtonType="Button" Text="+" CommandName="addQty" />
-                <asp:ButtonField ButtonType="Button" Text="-" CommandName="decQty" />
+                <asp:ButtonField ButtonType="Button" Text="+" CommandName="addQty" ControlStyle-CssClass="button" />
+                <asp:ButtonField ButtonType="Button" Text="-" CommandName="decQty" ControlStyle-CssClass="button" />
             </Columns>
         </asp:GridView>
         <div class="notification">

@@ -21,17 +21,26 @@ namespace PRN292_LAB_2.Models
 
             foreach (DataRow r in tbl.Rows)
             {
-                Product p = new Product();
-                p.id = Convert.ToInt32(r["ProductID"]);
-                p.name = r["ProductName"].ToString();
-                p.price = Convert.ToDouble(r["UnitPrice"]);
-                p.category = DataModel.ctg.searchByID(r["CategoryID"]);
-                p.discontinue = Convert.ToBoolean(r["Discontinued"]);
-                return p;
+                return convertRow(r);
             }
 
             return null;
         }
+
+        public Product convertRow(DataRow r)
+        {
+            Product p = new Product();
+
+            if (r["ProductID"] != null) p.id = Convert.ToInt32(r["ProductID"]);
+            if (r["ProductName"] != null) p.name = (string)r["ProductName"];
+            if (r["UnitPrice"] != null) p.price = Convert.ToDouble(r["UnitPrice"]);
+
+            if (r["CategoryID"] != null) p.category = DataModel.ctg.searchByID(r["CategoryID"]);
+            if (r["Discontinued"] != null) p.discontinue = Convert.ToBoolean(r["Discontinued"]);
+
+            return p;
+        }
+
 
         public DataTable searchById2(object x)
         {
@@ -48,15 +57,7 @@ namespace PRN292_LAB_2.Models
 
             foreach (DataRow r in tbl.Rows)
             {
-                Product p = new Product();
-                p.id = Convert.ToInt32(r["ProductID"]);
-                p.name = r["ProductName"].ToString();
-                p.price = Convert.ToDouble(r["UnitPrice"]);
-                p.category = DataModel.ctg.searchByID(r["CategoryID"]);
-                p.discontinue = Convert.ToBoolean(r["Discontinued"]);
-
-                list.Add(p);
-                
+                list.Add(convertRow(r));
             }
 
             return list;
